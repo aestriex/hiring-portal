@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_29_043617) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_29_060141) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+  enable_extension "pgcrypto"
 
-  create_table "job_postings", force: :cascade do |t|
+  create_table "job_postings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "department"
     t.text "description"
@@ -23,21 +24,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_29_043617) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "questions", force: :cascade do |t|
+  create_table "questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "label"
     t.text "options"
     t.integer "position"
     t.string "question_type"
     t.boolean "required"
-    t.bigint "section_id", null: false
+    t.uuid "section_id", null: false
     t.datetime "updated_at", null: false
     t.index ["section_id"], name: "index_questions_on_section_id"
   end
 
-  create_table "sections", force: :cascade do |t|
+  create_table "sections", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.bigint "job_posting_id", null: false
+    t.uuid "job_posting_id", null: false
     t.integer "position"
     t.string "title"
     t.datetime "updated_at", null: false

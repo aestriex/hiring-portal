@@ -1,0 +1,31 @@
+<div class="max-w-3xl mx-auto px-6 py-12">
+  <h1 class="text-3xl font-bold text-gray-900 mb-2">
+    <%= @job_posting.title %>
+  </h1>
+  <p class="text-gray-500 mb-6">
+    <%= @job_posting.department %>
+  </p>
+
+  <p class="text-gray-700 leading-relaxed mb-10">
+    <%= @job_posting.description %>
+  </p>
+
+  <% @job_posting.sections.order(:position).each do |section| %>
+    <div class="mb-8">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">
+        <%= section.title %>
+      </h2>
+
+      <% section.questions.order(:position).each do |question| %>
+        <div class="mb-3 p-4 bg-gray-50 rounded-lg">
+          <p class="font-medium text-gray-900">
+            <%= question.label %>
+          </p>
+          <p class="text-sm text-gray-500">Type: <%= question.question_type %>
+              <%= "(required)" if question.required %>
+          </p>
+        </div>
+        <% end %>
+    </div>
+    <% end %>
+</div>

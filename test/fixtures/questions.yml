@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  section: one
+  question_type: MyString
+  label: MyString
+  required: false
+  options: MyText
+  position: 1
+
+two:
+  section: two
+  question_type: MyString
+  label: MyString
+  required: false
+  options: MyText
+  position: 1
