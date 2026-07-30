@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= content_for(:title) || "Hiring Portal" %>
+    </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+            <%= stylesheet_link_tag :app, "data-turbo-track" : "reload" %>
+                <%= javascript_importmap_tags %>
+</head>
+
+<body class="bg-background text-foreground">
+    <div class="flex h-screen">
+        <aside class="w-64 border-r border-border bg-muted/40 flex flex-col">
+            <div class="p-4 border-b border-border">
+                <span class="font-semibold text-lg">Studio Provisio</span>
+            </div>
+
+            <nav class="flex-1 p-4 space-y-1">
+                <%= link_to "Dashboard" , root_path,
+                    class: "block px-3 py-2 rounded-md text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+                    %>
+                    <%= link_to "Job Postings" , job_postings_path,
+                        class: "block px-3 py-2 rounded-md text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+                        %>
+            </nav>
+
+            <div class="p-4 border-t border-border text-sm">
+                <p class="text-muted-foreground mb-2">
+                    <%= current_user.email %>
+                </p>
+                <%= button_to "Sign Out" , destroy_user_session_path, method: :delete,
+                    class: "text-sm text-muted-foreground hover:text-foreground" %>
+            </div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-8">
+            <% flash.each do |type, message| %>
+                <div class="mb-4 rounded-md px-4 py-3 text-sm <%= type == " notice"
+                    ? "bg-secondary text-secondary-foreground" : "bg-destructive text-destructive-foreground" %>">
+                    <%= message %>
+                </div>
+                <% end %>
+
+                    <%= yield %>
+        </main>
+    </div>
+</body>
+
+</html>
