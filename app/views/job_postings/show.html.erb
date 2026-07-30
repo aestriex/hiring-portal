@@ -1,31 +1,36 @@
 <div class="max-w-3xl mx-auto px-6 py-12">
-  <h1 class="text-3xl font-bold text-gray-900 mb-2">
+  <h1 class="text-3xl font-bold text-foreground mb-2">
     <%= @job_posting.title %>
   </h1>
-  <p class="text-gray-500 mb-6">
+  <p class="text-muted-foreground mb-6">
     <%= @job_posting.department %>
   </p>
-
-  <p class="text-gray-700 leading-relaxed mb-10">
+  <p class="text-foreground leading-relaxed mb-6">
     <%= @job_posting.description %>
   </p>
 
-  <% @job_posting.sections.order(:position).each do |section| %>
-    <div class="mb-8">
-      <h2 class="text-xl font-semibold text-gray-900 mb-4">
-        <%= section.title %>
-      </h2>
+  <%= render_button "Add Section" , as: :link, href: new_job_posting_section_path(@job_posting), variant: :outline %>
 
-      <% section.questions.order(:position).each do |question| %>
-        <div class="mb-3 p-4 bg-gray-50 rounded-lg">
-          <p class="font-medium text-gray-900">
-            <%= question.label %>
-          </p>
-          <p class="text-sm text-gray-500">Type: <%= question.question_type %>
-              <%= "(required)" if question.required %>
-          </p>
+    <% @job_posting.sections.order(:position).each do |section| %>
+      <div class="mt-8">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-semibold text-foreground">
+            <%= section.title %>
+          </h2>
+          <%= render_button "Add Question" , as: :link, href: new_job_posting_section_question_path(@job_posting,
+            section), variant: :secondary %>
         </div>
-        <% end %>
-    </div>
-    <% end %>
+
+        <% section.questions.order(:position).each do |question| %>
+          <div class="mb-3 p-4 bg-muted rounded-lg">
+            <p class="font-medium text-foreground">
+              <%= question.label %>
+            </p>
+            <p class="text-sm text-muted-foreground">Type: <%= question.question_type %>
+                <%= "(required)" if question.required %>
+            </p>
+          </div>
+          <% end %>
+      </div>
+      <% end %>
 </div>
