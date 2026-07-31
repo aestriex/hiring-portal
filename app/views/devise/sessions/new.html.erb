@@ -23,4 +23,7 @@
   </div>
 <% end %>
 
+<%= button_to "Sign in with Roblox", user_roblox_omniauth_authorize_path,
+      class: "w-full text-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:opacity-90",
+      form: { data: { turbo: false } } %>
 <%= render "devise/shared/links" %>

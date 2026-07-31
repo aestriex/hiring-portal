@@ -72,3 +72,7 @@ gem "tailwind_merge"
 gem "devise"
 
 gem "lucide-rails"
+
+gem "omniauth"
+gem "omniauth-oauth2"
+gem "omniauth-rails_csrf_protection"

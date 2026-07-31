@@ -17,8 +17,8 @@
     --color-secondary-foreground: hsl(240 10% 3.9%);
     --color-accent: hsl(240 4.8% 93%);
     --color-accent-foreground: hsl(240 10% 3.9%);
-    --color-destructive: hsl(0 72.2% 50.6%);
-    --color-destructive-foreground: hsl(0 0% 98%);
+    --color-destructive: hsl(355 70% 60%);
+    --color-destructive-foreground: hsl(240 10% 3.9%);
     --color-ring: hsl(240 5.9% 10%);
 
     --radius-lg: 0.5rem;
@@ -47,7 +47,7 @@
     --color-primary-foreground: hsl(240 5% 11%);
     --color-secondary: hsl(240 5% 18%);
     --color-secondary-foreground: hsl(0 0% 98%);
-    --color-destructive: hsl(0 62.8% 35.6%);
+    --color-destructive: hsl(355 65% 52%);
     --color-destructive-foreground: hsl(0 0% 98%);
     --color-ring: hsl(240 5% 65%);
 }

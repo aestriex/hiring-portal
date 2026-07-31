@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get "pages/dashboard"
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :job_postings do
     resources :sections do
       resources :questions
