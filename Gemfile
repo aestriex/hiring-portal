@@ -70,3 +70,5 @@ end
 gem "tailwind_merge"
 
 gem "devise"
+
+gem "lucide-rails"

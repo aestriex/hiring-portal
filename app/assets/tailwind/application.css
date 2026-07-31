@@ -1,27 +1,53 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');@import "tailwindcss";
 @import "tailwindcss";
 
 @theme {
-    --font-sans: "Inter", sans-serif;
-    --color-background: hsl(0 0% 100%);
-    --color-foreground: hsl(222.2 47.4% 11.2%);
-    --color-muted: hsl(210 40% 96.1%);
-    --color-muted-foreground: hsl(215.4 16.3% 46.9%);
-    --color-border: hsl(214.3 31.8% 91.4%);
-    --color-input: hsl(214.3 31.8% 91.4%);
+    --font-sans: "Geist", sans-serif;
+    --color-background: hsl(240 5% 97.5%);
+    --color-foreground: hsl(240 10% 3.9%);
+    --color-muted: hsl(240 4.8% 93%);
+    --color-muted-foreground: hsl(240 3.8% 46.1%);
+    --color-border: hsl(240 5.9% 88%);
+    --color-input: hsl(240 5.9% 88%);
     --color-card: hsl(0 0% 100%);
-    --color-card-foreground: hsl(222.2 47.4% 11.2%);
-    --color-primary: hsl(222.2 47.4% 11.2%);
-    --color-primary-foreground: hsl(210 40% 98%);
-    --color-secondary: hsl(210 40% 96.1%);
-    --color-secondary-foreground: hsl(222.2 47.4% 11.2%);
-    --color-accent: hsl(210 40% 96.1%);
-    --color-accent-foreground: hsl(222.2 47.4% 11.2%);
-    --color-destructive: hsl(0 100% 50%);
-    --color-destructive-foreground: hsl(210 40% 98%);
-    --color-ring: hsl(215 20.2% 65.1%);
+    --color-card-foreground: hsl(240 10% 3.9%);
+    --color-primary: hsl(240 10% 3.9%);
+    --color-primary-foreground: hsl(240 5% 97.5%);
+    --color-secondary: hsl(240 4.8% 93%);
+    --color-secondary-foreground: hsl(240 10% 3.9%);
+    --color-accent: hsl(240 4.8% 93%);
+    --color-accent-foreground: hsl(240 10% 3.9%);
+    --color-destructive: hsl(0 72.2% 50.6%);
+    --color-destructive-foreground: hsl(0 0% 98%);
+    --color-ring: hsl(240 5.9% 10%);
 
     --radius-lg: 0.5rem;
     --radius-md: calc(0.5rem - 2px);
     --radius-sm: calc(0.5rem - 4px);
+
+    --spacing-header: 4rem;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.dark {
+    --color-background: hsl(240 5% 11%);
+    --color-foreground: hsl(0 0% 98%);
+    --color-muted: hsl(240 5% 15%);
+    --color-muted-foreground: hsl(240 4% 65%);
+    --color-accent: hsl(240 5% 18%);
+    --color-accent-foreground: hsl(0 0% 98%);
+    --color-popover: hsl(240 5% 11%);
+    --color-popover-foreground: hsl(0 0% 98%);
+    --color-border: hsl(240 5% 20%);
+    --color-input: hsl(240 5% 20%);
+    --color-card: hsl(240 5% 11%);
+    --color-card-foreground: hsl(0 0% 98%);
+    --color-primary: hsl(0 0% 98%);
+    --color-primary-foreground: hsl(240 5% 11%);
+    --color-secondary: hsl(240 5% 18%);
+    --color-secondary-foreground: hsl(0 0% 98%);
+    --color-destructive: hsl(0 62.8% 35.6%);
+    --color-destructive-foreground: hsl(0 0% 98%);
+    --color-ring: hsl(240 5% 65%);
 }

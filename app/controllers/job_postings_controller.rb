@@ -1,6 +1,7 @@
 class JobPostingsController < ApplicationController
   layout "admin"
-  
+  before_action :authenticate_user!
+
   permission :new, desc: "Access the new job posting form", auto_assign: ["Manager", "Super Admin"]
   permission :create, desc: "Create new job postings", auto_assign: ["Manager", "Super Admin"]
   permission :edit, desc: "Access the edit job posting form", auto_assign: ["Staff", "Manager", "Super Admin"]

@@ -1,4 +1,7 @@
 class QuestionsController < ApplicationController
+  layout "admin"
+  
+  before_action :authenticate_user!
   before_action :set_job_posting
   before_action :set_section
 
