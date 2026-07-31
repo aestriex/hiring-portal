@@ -1,17 +1,19 @@
-import { Controller } from "@hotwired/stimulus";
+import { Controller } from "@hotwired/stimulus"
+
 export default class extends Controller {
-  connect() {
-    this.button = this.element.querySelector("button");
-    this.checkmark = this.button.querySelector("span");
-  }
+  static targets = ["button", "checkmark", "input"]
 
   toggle() {
-    if (this.checkmark.classList.contains("hidden")) {
-      this.checkmark.classList.remove("hidden");
-      this.button.dataset.state = "checked";
+    const isChecked = this.checkmarkTarget.classList.contains("hidden")
+
+    if (isChecked) {
+      this.checkmarkTarget.classList.remove("hidden")
+      this.buttonTarget.dataset.state = "checked"
+      this.inputTarget.checked = true
     } else {
-      this.checkmark.classList.add("hidden");
-      this.button.dataset.state = "unchecked";
+      this.checkmarkTarget.classList.add("hidden")
+      this.buttonTarget.dataset.state = "unchecked"
+      this.inputTarget.checked = false
     }
   }
 }

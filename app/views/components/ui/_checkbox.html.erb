@@ -1,33 +1,27 @@
+<% unique_id = options[:id].presence || "checkbox_#{name.parameterize}_#{options[:value]}" %>
+
 <div data-controller="ui--checkbox">
   <div class="flex items-center space-x-2">
+    <%= check_box_tag name, options[:value] || "1", options[:checked] || false,
+          id: unique_id,
+          class: "hidden",
+          autocomplete: "off",
+          data: { "ui--checkbox-target": "input" } %>
+
     <button
       type="button"
       role="checkbox"
-      aria-checked="false"
-      data-state="unchecked"
-      value="on"
-      class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
-      for="<%= name %>"
+      data-state="<%= options[:checked] ? "checked" : "unchecked" %>"
       data-action="click->ui--checkbox#toggle"
-      id="<%= options[:id] %>">
-      <span
-        class="flex items-center justify-center text-current hidden"
-        style="pointer-events: none">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="h-4 w-4">
+      data-ui--checkbox-target="button"
+      class="peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
+      id="<%= unique_id %>_button">
+      <span class="flex items-center justify-center text-current <%= options[:checked] ? "" : "hidden" %>" data-ui--checkbox-target="checkmark" style="pointer-events: none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4">
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
       </span>
     </button>
-    <%= render_label name: name, label: label, data: {action: "click->ui--checkbox#toggle"} %>
+    <%= render_label name: name, label: label, for: unique_id, data: {action: "click->ui--checkbox#toggle"} %>
   </div>
 </div>

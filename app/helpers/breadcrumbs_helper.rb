@@ -28,6 +28,8 @@ module BreadcrumbsHelper
       JobPosting.find_by(id: uuid)&.title
     when "sections"
       Section.find_by(id: uuid)&.title
+    when "roles"
+      Role.find_by(id: uuid)&.name
     else
       uuid
     end

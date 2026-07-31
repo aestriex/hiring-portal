@@ -1,5 +1,5 @@
 <!-- app/views/shared/_breadcrumbs.html.erb -->
-<nav class="h-(--spacing-header) flex items-center gap-2 px-8 border-b border-border text-sm text-muted-foreground -mx-8 -mt-8 mb-8">
+<nav class="h-(--spacing-header) flex items-center gap-2 px-8 border-b border-border text-sm text-muted-foreground">
   <% breadcrumbs.each_with_index do |crumb, index| %>
     <% if index > 0 %>
       <%= lucide_icon "chevron-right", class: "w-4 h-4" %>
