@@ -1,13 +1,15 @@
-<div class="mx-auto px-6 py-12">
-  <h1 class="text-3xl font-bold text-foreground mb-8">Job Postings</h1>
+<h1 class="text-2xl font-bold text-foreground mb-8">Job Postings</h1>
 
-  <div class="flex flex-row gap-4">
-    <% @job_postings.each do |posting| %>
-      <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition flex justify-center flex-col">
-        <h2 class="text-lg font-semibold text-foreground"><%= posting.title %></h2>
-        <p class="text-foreground mb-4"><%= posting.department %></p>
-        <%= render_button "Go to details" , as: :link, href: job_posting_path(posting) %>
-      </div>
-    <% end %>
-  </div>
+<div class="flex flex-row gap-4">
+  <% @job_postings.each do |posting| %>
+    <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition flex justify-center flex-col">
+      <h2 class="text-lg font-semibold text-foreground">
+        <%= posting.title %>
+      </h2>
+      <p class="text-foreground mb-4">
+        <%= posting.department %>
+      </p>
+      <%= render_button "Go to details" , as: :link, href: job_posting_path(posting) %>
+    </div>
+  <% end %>
 </div>

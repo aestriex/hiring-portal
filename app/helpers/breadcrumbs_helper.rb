@@ -30,6 +30,8 @@ module BreadcrumbsHelper
       Section.find_by(id: uuid)&.title
     when "roles"
       Role.find_by(id: uuid)&.name
+    when "users"
+      User.find_by(id: uuid)&.display_name
     else
       uuid
     end

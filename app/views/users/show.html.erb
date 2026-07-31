@@ -1,0 +1,7 @@
+<div class="flex items-center gap-3">
+  <%= image_tag user.display_avatar_url, class: "w-8 h-8 rounded-full" %>
+  <div>
+    <p class="font-medium"><%= user.display_name %></p>
+    <p class="text-sm text-muted-foreground"><%= user.roles.map(&:name).join(", ").presence || "No roles assigned" %></p>
+  </div>
+</div>
