@@ -5,6 +5,11 @@ class QuestionsController < ApplicationController
   before_action :set_job_posting
   before_action :set_section
 
+  def show
+    @question = @section.questions.find(params[:id])
+    render partial: "questions/question", locals: { question: @question }
+  end
+
   def new
     @question = @section.questions.new
   end
@@ -29,9 +34,12 @@ class QuestionsController < ApplicationController
 
   def update
     @question = @section.questions.find(params[:id])
-
+    
     if @question.update(question_params)
-      redirect_to job_posting_path(@job_posting), notice: "Question updated."
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to job_posting_path(@job_posting), notice: "Question updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
