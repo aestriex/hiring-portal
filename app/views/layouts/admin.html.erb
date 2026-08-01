@@ -64,7 +64,8 @@
               <%= lucide_icon "sun-moon", class: "w-4 h-4" %>
               Switch theme
             </button>
-            <%= button_to destroy_user_session_path, method: :delete, class: "w-full hover:bg-destructive/10 hover:text-destructive-foreground flex items-center gap-2 px-2 py-1.5 text-sm rounded-sm hover:bg-accent text-left" do %>
+            <%= render_separator class: "mt-1 mb-1" %>
+            <%= button_to destroy_user_session_path, method: :delete, class: "w-full text-destructive hover:bg-destructive/10 hover:text-destructive-foreground flex items-center gap-2 px-2 py-1.5 text-sm rounded-sm text-left" do %>
               <%= lucide_icon "log-out", class: "w-4 h-4" %>
               Logout
             <% end %>

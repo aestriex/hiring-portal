@@ -1,7 +1,7 @@
 module Components::TableHelper
   def render_table(caption = nil, **options, &block)
     content_tag :table, options.merge(
-      class: tw("w-full text-sm border-b", options[:class])
+      class: tw("w-full text-sm border-b border-border", options[:class])
     ) do
       if caption.present?
         content_tag :caption, caption, class: "mt-4 text-sm text-muted-foreground " do
@@ -17,7 +17,7 @@ module Components::TableHelper
     content_tag :thead, options.merge(
       class: tw("[&_tr]:border-b", options[:class])
     ) do
-      content_tag :tr, class: "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted" do
+      content_tag :tr, class: "border-b border-border transition-colors data-[state=selected]:bg-muted" do
         capture(&block)
       end
     end
@@ -43,7 +43,7 @@ module Components::TableHelper
 
   def table_row(**options, &block)
     content_tag :tr, options.merge(
-      class: tw("border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted", options[:class])
+      class: tw("border-b border-border transition-all duration-100 hover:bg-muted/50 data-[state=selected]:bg-muted", options[:class])
     ), &block
   end
 

@@ -26,7 +26,9 @@ class JobPostingsController < ApplicationController
     if @job_posting.save
       redirect_to @job_posting, notice: "Job posting created successfully."
     else
-      render :new, status: :unprocessable_entity
+      render turbo_stream: turbo_stream.replace("job_posting_dialog_form",
+        partial: "job_postings/form", locals: { job_posting: @job_posting }),
+        status: :unprocessable_entity
     end
   end
 
