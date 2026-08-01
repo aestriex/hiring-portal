@@ -13,7 +13,11 @@ class QuestionsController < ApplicationController
     @question = @section.questions.new(question_params)
 
     if @question.save
-      redirect_to job_posting_path(@job_posting), notice: "Question added."
+      flash.now[:notice] = "Question added."
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to job_posting_path(@job_posting), notice: "Question added." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,6 +41,13 @@ class QuestionsController < ApplicationController
     @question = @section.questions.find(params[:id])
     @question.destroy
     redirect_to job_posting_path(@job_posting), notice: "Question removed."
+  end
+
+  def reorder
+    params[:ids].each_with_index do |id, index|
+      @section.questions.find(id).update!(position: index)
+    end
+    head :ok
   end
 
   private

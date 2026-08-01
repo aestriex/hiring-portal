@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   resources :job_postings do
     resources :sections do
-      resources :questions
+      patch :reorder, on: :collection
+      resources :questions do
+        patch :reorder, on: :collection
+      end
     end
   end
 

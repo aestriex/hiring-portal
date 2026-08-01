@@ -12,7 +12,11 @@ class SectionsController < ApplicationController
     @section = @job_posting.sections.new(section_params)
 
     if @section.save
-      redirect_to job_posting_path(@job_posting), notice: "Section added."
+      flash.now[:notice] = "Section added."
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to job_posting_path(@job_posting), notice: "Section added." }
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -36,6 +40,13 @@ class SectionsController < ApplicationController
     @section = @job_posting.sections.find(params[:id])
     @section.destroy
     redirect_to job_posting_path(@job_posting), notice: "Section removed."
+  end
+
+  def reorder
+    params[:ids].each_with_index do |id, index|
+      @job_posting.sections.find(id).update!(position: index)
+    end
+    head :ok
   end
 
   private

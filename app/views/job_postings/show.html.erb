@@ -9,28 +9,15 @@
     <%= @job_posting.description %>
   </p>
 
-  <%= render_button "Add Section" , as: :link, href: new_job_posting_section_path(@job_posting), variant: :outline %>
+  <%= turbo_frame_tag "new_section" do %>
+    <%= render_button as: :link, href: new_job_posting_section_path(@job_posting), variant: :outline do %>
+      <%= lucide_icon "plus", class: "w-4 h-4 mr-2" %> Add Section
+    <% end %>
+  <% end %>
 
+  <div id="sections" data-controller="sortable" data-sortable-url-value="<%= reorder_job_posting_sections_path(@job_posting) %>">
     <% @job_posting.sections.order(:position).each do |section| %>
-      <div class="mt-8">
-        <div class="flex items-center justify-between mb-4">
-          <h2 class="text-xl font-semibold text-foreground">
-            <%= section.title %>
-          </h2>
-          <%= render_button "Add Question" , as: :link, href: new_job_posting_section_question_path(@job_posting,
-            section), variant: :secondary %>
-        </div>
-
-        <% section.questions.order(:position).each do |question| %>
-          <div class="mb-3 p-4 bg-muted rounded-lg">
-            <p class="font-medium text-foreground">
-              <%= question.label %>
-            </p>
-            <p class="text-sm text-muted-foreground">Type: <%= question.question_type %>
-                <%= "(required)" if question.required %>
-            </p>
-          </div>
-          <% end %>
-      </div>
-      <% end %>
+      <%= render "sections/section", section: section, job_posting: @job_posting %>
+    <% end %>
+  </div>
 </div>

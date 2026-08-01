@@ -1,0 +1,7 @@
+<div id="<%= dom_id(question) %>" data-id="<%= question.id %>" class="mb-3 p-4 bg-muted rounded-lg gap-3 flex items-center">
+  <%= lucide_icon "grip-vertical", class: "w-4 h-4 text-muted-foreground cursor-grab drag-handle mt-1" %>
+  <div>
+    <p class="font-medium text-foreground"><%= question.label %></p>
+    <p class="text-sm text-muted-foreground">Type: <%= question.question_type %> <%= "(required)" if question.required %></p>
+  </div>
+</div>

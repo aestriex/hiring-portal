@@ -57,3 +57,12 @@
     @apply transition-all duration-300 ease-in-out;
   }
 }
+
+@keyframes shrink-bar {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+.toast-bar {
+  animation: shrink-bar 5s linear forwards;
+}

@@ -1,0 +1,7 @@
+<div data-controller="toast" class="toast <%= type == "notice" ? "bg-secondary text-secondary-foreground border-border" : "bg-destructive text-destructive-foreground border-destructive" %> border rounded-lg shadow-lg overflow-hidden w-80">
+  <div class="flex items-center gap-3 px-4 py-3">
+    <%= lucide_icon(type == "notice" ? "check-circle" : "alert-circle", class: "w-5 h-5 shrink-0") %>
+    <span class="text-sm font-medium"><%= message %></span>
+  </div>
+  <div class="h-1 bg-current opacity-40 toast-bar"></div>
+</div>

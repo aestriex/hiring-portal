@@ -1,29 +1,39 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <p><%= f.label :email %></p>
-    <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
-  </div>
-
-  <div class="field">
-    <p><%= f.label :password %></p>
-    <p><%= f.password_field :password, autocomplete: "current-password" %></p>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <p><%= f.check_box :remember_me %></p>
-      <p><%= f.label :remember_me %></p>
+<div class="min-h-screen flex items-center justify-center bg-background px-6 w-full">
+  <div class="w-full max-w-sm">
+    <div class="text-center mb-8">
+      <h1 class="text-2xl font-semibold text-foreground">Studio Provisio</h1>
+      <p class="text-sm text-muted-foreground mt-1">Hiring Portal</p>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="border border-border rounded-lg p-6 space-y-6 bg-card">
+      <%= button_to user_roblox_omniauth_authorize_path,
+            class: "w-full text-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:opacity-90 font-medium text-sm cursor-pointer",
+            form: { data: { turbo: false } } do %>
+        <%= lucide_icon "gamepad-2", class: "w-4 h-4 mr-2 inline" %>
+        Sign in with Roblox
+      <% end %>
+
+      <div class="flex items-center gap-3">
+        <div class="h-px flex-1 bg-border"></div>
+        <span class="text-xs text-muted-foreground">OR</span>
+        <div class="h-px flex-1 bg-border"></div>
+      </div>
+
+      <%= form_with model: resource, as: resource_name, url: session_path(resource_name), class: "space-y-4" do |f| %>
+        <div>
+          <%= f.label :email, class: "block text-sm font-medium text-foreground mb-1" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                class: "w-full border border-input rounded-md px-3 py-2 text-sm bg-background text-foreground focus:ring-2 focus:outline-none focus:ring-accent duration-100" %>
+        </div>
+
+        <div>
+          <%= f.label :password, class: "block text-sm font-medium text-foreground mb-1" %>
+          <%= f.password_field :password, autocomplete: "current-password",
+                class: "w-full border border-input rounded-md px-3 py-2 text-sm bg-background text-foreground focus:ring-2 focus:outline-none focus:ring-accent duration-100" %>
+        </div>
+
+        <%= render_button "Sign in", type: :submit, class: "w-full" %>
+      <% end %>
+    </div>
   </div>
-<% end %>
-
-<%= button_to "Sign in with Roblox", user_roblox_omniauth_authorize_path,
-      class: "w-full text-center px-4 py-2 rounded-md bg-primary text-primary-foreground hover:opacity-90",
-      form: { data: { turbo: false } } %>
-<%= render "devise/shared/links" %>
+</div>
